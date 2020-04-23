@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -24,9 +25,11 @@ public class ShoppingBasket {
     private Long id;
 
     @ManyToMany
-    private List<Goods> goods;
+    List<Goods> goods;
 
     private Long totalPrice;
 
     private Long totalGoods;
+
+    private String sessionId;
 }

@@ -1,14 +1,8 @@
 package ua.lviv.lgs.CamSecurity.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -16,7 +10,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 
-@Entity
+@Entity(name = "groups_g")
 public class Groups {
 
     @Id
@@ -25,8 +19,11 @@ public class Groups {
 
     private String name;
 
-    private Long totalGoods;
-
     @OneToMany
     private List<Goods> goods;
+
+    private String description;
+
+    private Integer totalGoods;
+
 }

@@ -1,23 +1,21 @@
-package ua.lviv.lgs.CamSecurity.entity;
+package ua.lviv.lgs.CamSecurity.servise.impl;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+import ua.lviv.lgs.CamSecurity.entity.Groups;
 
-import javax.persistence.*;
 import java.util.*;
-
 
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode
 
-@Entity
-public class Goods {
+public class GoodsDTO {
 
-    @Id
-    @GeneratedValue
     private Long id;
 
     private Integer code;
@@ -28,9 +26,8 @@ public class Goods {
 
     private Long price;
 
-    @OneToMany
-    private List<Image> image = new LinkedList<>();
+    private List<MultipartFile> image = new LinkedList<>();
 
-    @ManyToOne
     private Groups group;
+
 }

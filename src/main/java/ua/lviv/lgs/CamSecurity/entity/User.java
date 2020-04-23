@@ -6,11 +6,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -37,8 +36,14 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Lob
+    private byte[] avatar;
+
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> role = new HashSet<>();
+    private List<Role> roles = new ArrayList<>();
+
+    @Column(length = 100000)
+    private String base64;
 
     @OneToOne
     private ShoppingBasket shoppingBasket;
@@ -46,7 +51,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return role;
+        return roles;
     }
 
     @Override

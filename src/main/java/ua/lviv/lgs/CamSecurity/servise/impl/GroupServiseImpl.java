@@ -7,7 +7,7 @@ import ua.lviv.lgs.CamSecurity.entity.Groups;
 import ua.lviv.lgs.CamSecurity.exeption.NotFoundExeption;
 import ua.lviv.lgs.CamSecurity.repository.GoodsRepository;
 import ua.lviv.lgs.CamSecurity.repository.GroupsRepository;
-import ua.lviv.lgs.CamSecurity.servise.GroupsServise;
+import ua.lviv.lgs.CamSecurity.servise.GroupService;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class GroupsServiseImpl implements GroupsServise {
+public class GroupServiseImpl implements GroupService {
 
     private final GroupsRepository groupsRepository;
     private final GoodsRepository goodsRepository;

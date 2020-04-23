@@ -1,5 +1,6 @@
 package ua.lviv.lgs.CamSecurity.entity;
 
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,18 +14,13 @@ import javax.persistence.*;
 @EqualsAndHashCode
 
 @Entity
-public class Media {
+public class Image {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String fileName;
+    @Column(length = 100000)
+    private String base64image;
 
-    @Column(nullable = false)
-    private String type;
-
-    @Lob
-    private byte[] data;
 }

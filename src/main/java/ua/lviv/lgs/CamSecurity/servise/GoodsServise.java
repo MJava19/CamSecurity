@@ -18,7 +18,5 @@ public interface GoodsServise {
 
     void deleteById(Long id);
 
-    void addPictureToGoods(Long mediaId, Long goodsId);
-
     Set<Goods> findByName(String name);
 }

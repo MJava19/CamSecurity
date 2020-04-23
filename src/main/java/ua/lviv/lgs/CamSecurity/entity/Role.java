@@ -18,13 +18,18 @@ import javax.persistence.Id;
 
 @Entity
 public class Role implements GrantedAuthority {
+    public Role() {
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
-
 
     @Override
     public String getAuthority() {

@@ -16,29 +16,33 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="/students/create" class="btn btn-primary"><i class="far fa-eye">Add student</i></a>
+            <a href="/groups/create" class="btn btn-primary"><i class="far fa-eye">Add group</i></a>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Course</th>
-                    <th scope="col">Student
-                        <name></name>
-                    </th>
+                    <th scope="col">#Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Total Goods</th>
+                    <th scope="col">Goods</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${students}" var="student">
+                <c:forEach items="${group}" var="group">
                     <tr>
-                        <th scope="row">${student.id}</th>
-                        <td>${student.course}</td>
-                        <td>${student.firstName} ${student.lastName}</td>
+                        <th scope="row">${group.id}</th>
+                        <td>${group.name}</td>
+                        <td>${group.description}</td>
+                        <td>${group.totalGoods}</td>
+                        <td><a href="/groups/list/goods?id=${group.id}" type="button"
+                               class="btn btn-primary"><i>Go to goods</i></a>
+                        </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="/students/one?id=${student.id}" type="button"
+                                <a href="/groups/one?id=${group.id}" type="button"
                                    class="btn btn-primary"><i>edit</i></a>
-                                <a href="/students/delete?id=${student.id}" type="button" class="btn btn-danger"><i>delete</i></a>
+                                <a href="/groups/delete?id=${group.id}" type="button" class="btn btn-danger"><i>delete</i></a>
                             </div>
                         </td>
                     </tr>

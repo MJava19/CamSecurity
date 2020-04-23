@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public interface GroupsServise {
+public interface GroupService {
     Groups create(Groups group);
 
     Groups update(Groups group);

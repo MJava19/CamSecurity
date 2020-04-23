@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Create an account</title>
+    <title>Edit your profile</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -18,14 +18,8 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" enctype="multipart/form-data" class="form-signin" >
-        <h2 class="form-signin-heading">Create your account</h2>
-        <spring:bind path="username">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="username" class="form-control" placeholder="Username"
-                            autofocus="true"></form:input>
-                <form:errors path="username"></form:errors>
-            </div>
-        </spring:bind>
+        <input type="hidden" value="${user.id}" class="form-control" id="id" name="id">
+        <h2 class="form-signin-heading">Edit your profile</h2>
 
 
         <spring:bind path="firstName">
@@ -67,7 +61,7 @@
                 <form:input  type="file"  path="avatar" class="form-control" placeholder="Avatar"></form:input>
         </spring:bind>
         <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
     </form:form>
 
 </div>
