@@ -12,6 +12,13 @@
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+<jsp:include page="navbar.jsp"></jsp:include>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <div class="row">

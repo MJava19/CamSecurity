@@ -3,6 +3,7 @@ package ua.lviv.lgs.CamSecurity.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -17,11 +18,13 @@ public class Groups {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String name;
 
     @OneToMany
     private List<Goods> goods;
 
+    @NotNull
     private String description;
 
     private Integer totalGoods;

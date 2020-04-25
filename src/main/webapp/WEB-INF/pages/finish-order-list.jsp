@@ -23,6 +23,9 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <label>Total Price: ${totalPrice}</label>
+            <br>
+            <label>Total Goods: ${totalGoods}</label>
             <br>
             <table class="table table-bordered">
                 <thead>
@@ -39,7 +42,6 @@
                     <th scope="col">region</th>
                     <th scope="col">city</th>
                     <th scope="col">numberBranch</th>
-                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,11 +65,6 @@
                         <td>${order.region}</td>
                         <td>${order.city}</td>
                         <td>${order.numberBranch}</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="/admin/orders/delete?id=${order_id}" type="button" class="btn btn-danger"><i>delete</i></a>
-                            </div>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

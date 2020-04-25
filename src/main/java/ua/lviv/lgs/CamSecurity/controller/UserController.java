@@ -5,6 +5,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import ua.lviv.lgs.CamSecurity.repository.RoleRepository;
 import ua.lviv.lgs.CamSecurity.servise.ShoppingBasketServise;
 import ua.lviv.lgs.CamSecurity.servise.UserServise;
 import ua.lviv.lgs.CamSecurity.servise.impl.UserDTO;
+import ua.lviv.lgs.CamSecurity.validator.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class UserController {
     private final UserServise userServise;
     private final ShoppingBasketServise basketServise;
     private final RoleRepository roleRepository;
+    private final UserValidator userValidator;
 
 
     @GetMapping("/login")
@@ -34,12 +37,16 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") UserDTO userDTO) {
+    public String registration(@ModelAttribute("userForm") UserDTO userDTO, BindingResult bindingResult) {
         User user = mapToEntity(userDTO);
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         basketServise.create(shoppingBasket);
         user.setShoppingBasket(shoppingBasket);
         user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        userValidator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
         userServise.save(user);
         return "redirect:/login";
     }
@@ -82,13 +89,17 @@ public class UserController {
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/user/edit")
-    public String updateUser(@ModelAttribute("userForm") UserDTO userDTO, HttpServletRequest request) {
+    public String updateUser(@ModelAttribute("userForm") UserDTO userDTO, HttpServletRequest request, BindingResult bindingResult) {
         User user = mapToEntity(userDTO);
         User userForId = userServise.findByUsername(request.getUserPrincipal().getName());
         user.setId(userForId.getId());
         user.setUsername(userForId.getUsername());
         user.setShoppingBasket(userForId.getShoppingBasket());
         user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        userValidator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "redirect:/user/edit";
+        }
         userServise.save(user);
         return "redirect:/";
     }

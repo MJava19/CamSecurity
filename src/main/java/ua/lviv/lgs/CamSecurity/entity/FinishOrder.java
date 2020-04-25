@@ -1,14 +1,14 @@
 package ua.lviv.lgs.CamSecurity.entity;
 
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.lang.NonNull;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
@@ -17,48 +17,38 @@ import java.util.List;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "order_castomer", schema = "PUBLIC")
-public class Order {
-
+public class FinishOrder {
     @Id
     @GeneratedValue
-    @NotNull
     private Long id;
 
-    @NotNull
     private String userName;
 
     @OneToMany
-    @NotNull
     private List<Goods> goodsList;
 
-    @NotNull
     private Long totalGoods;
 
-    @NotNull
     private Long totalPrice;
 
-    @NotNull
     private String firstName;
 
-    @NotNull
     private String lastName;
 
-    @NotNull
     private String fatherName;
 
-    @NotNull
     private String email;
 
-    @NotNull
     private Integer phoneNumber;
 
-    @NotNull
     private String region;
 
-    @NotNull
     private String city;
 
-    @NotNull
     private Integer numberBranch;
+
+    private Long totalPriceInFinishOrder;
+
+    private Long totalGoodsInFinishOrder;
+
 }

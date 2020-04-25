@@ -73,8 +73,16 @@ public class BasketController {
     public String getBasket(Model model, HttpServletRequest request) {
         if (!request.isUserInRole("ROLE_USER")) {
             String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
-            ShoppingBasket shoppingBasket = basketServise.findBySessionId(sessionId);
-            model.addAttribute("basket", shoppingBasket);
+            if (basketServise.findBySessionId(sessionId) != null) {
+                ShoppingBasket shoppingBasket = basketServise.findBySessionId(sessionId);
+                model.addAttribute("basket", shoppingBasket);
+            } else {
+                ShoppingBasket shoppingBasket = new ShoppingBasket();
+                basketServise.create(shoppingBasket);
+                shoppingBasket.setSessionId(sessionId);
+                basketServise.create(shoppingBasket);
+                model.addAttribute("basket", shoppingBasket);
+            }
         } else {
             Principal principal = request.getUserPrincipal();
             User user = userServise.findByUsername(principal.getName());

@@ -2,6 +2,13 @@
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<jsp:include page="navbar.jsp"></jsp:include>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">

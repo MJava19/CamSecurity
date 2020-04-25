@@ -4,12 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.lviv.lgs.CamSecurity.entity.Goods;
 import ua.lviv.lgs.CamSecurity.entity.Groups;
 import ua.lviv.lgs.CamSecurity.exeption.NotFoundExeption;
 import ua.lviv.lgs.CamSecurity.servise.GoodsServise;
 import ua.lviv.lgs.CamSecurity.servise.GroupService;
+import ua.lviv.lgs.CamSecurity.validator.GroupValidator;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,7 @@ public class GroupController {
 
     private final GroupService groupService;
     private final GoodsServise goodsServise;
+    private final GroupValidator groupValidator;
 
     @GetMapping
     public String getAllGroups(Model model){
@@ -46,15 +50,23 @@ public class GroupController {
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createGroup(@ModelAttribute Groups group){
+    public String createGroup(@ModelAttribute Groups group, BindingResult bindingResult){
+        groupValidator.validate(group, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "group";
+        }
         groupService.create(group);
         return "redirect:/groups";
     }
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/update")
-    public String updateGroup(@ModelAttribute Groups group) {
+    public String updateGroup(@ModelAttribute Groups group, BindingResult bindingResult) {
         if (group.getId() != null) {
+            groupValidator.validate(group, bindingResult);
+            if (bindingResult.hasErrors()) {
+                return "group";
+            }
             groupService.update(group);}
         return "redirect:/groups";
     }

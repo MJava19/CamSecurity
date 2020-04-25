@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ua.lviv.lgs.CamSecurity.entity.*;
 import ua.lviv.lgs.CamSecurity.exeption.NotFoundExeption;
 import ua.lviv.lgs.CamSecurity.servise.*;
 import ua.lviv.lgs.CamSecurity.servise.impl.GoodsDTO;
+import ua.lviv.lgs.CamSecurity.validator.GoodsValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -20,13 +22,11 @@ import java.util.*;
 @RequiredArgsConstructor
 @RequestMapping("/goods")
 public class GoodsController {
-
     private final GoodsServise goodsServise;
     private final ImageService imageSrevice;
     private final GroupService groupService;
-    private final ShoppingBasketServise basketServise;
-    private final UserServise userServise;
     private final BasketController basketController;
+    private final GoodsValidator goodsValidator;
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/create")
@@ -38,9 +38,13 @@ public class GoodsController {
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/update")
-    public String updateGoods(@ModelAttribute GoodsDTO goodsDTO) {
+    public String updateGoods(@ModelAttribute GoodsDTO goodsDTO, BindingResult bindingResult) {
         Goods goods = mapToEntity(goodsDTO);
         mapImage(goodsDTO, goods);
+        goodsValidator.validate(goods, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "goods";
+        }
         goodsServise.create(goods);
         groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
         return "redirect:/goods";
@@ -48,9 +52,13 @@ public class GoodsController {
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createGoods(@ModelAttribute ("goodsForm") GoodsDTO goodsDTO) {
+    public String createGoods(@ModelAttribute ("goodsForm") GoodsDTO goodsDTO, BindingResult bindingResult) {
         Goods goods = mapToEntity(goodsDTO);
         mapImage(goodsDTO, goods);
+        goodsValidator.validate(goods, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "goods";
+        }
         goodsServise.create(goods);
         groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
         return "redirect:/goods";

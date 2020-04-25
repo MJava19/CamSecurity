@@ -14,6 +14,14 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="navbar.jsp"></jsp:include>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="container">
     <div class="row">
         <div class="col-12">

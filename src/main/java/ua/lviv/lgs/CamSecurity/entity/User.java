@@ -6,9 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Getter
@@ -23,16 +22,21 @@ public class User implements UserDetails {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     @Column(unique = true, nullable = false)
     private String username;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
+    @NotNull
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotNull
     @Column(nullable = false)
     private String password;
 
@@ -40,12 +44,14 @@ public class User implements UserDetails {
     private byte[] avatar;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @NotNull
     private List<Role> roles = new ArrayList<>();
 
     @Column(length = 100000)
     private String base64;
 
     @OneToOne
+    @NotNull
     private ShoppingBasket shoppingBasket;
 
 

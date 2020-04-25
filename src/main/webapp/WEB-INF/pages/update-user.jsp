@@ -14,7 +14,13 @@
 </head>
 
 <body>
-
+<jsp:include page="navbar.jsp"></jsp:include>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" enctype="multipart/form-data" class="form-signin" >

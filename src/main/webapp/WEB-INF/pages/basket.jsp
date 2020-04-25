@@ -13,6 +13,13 @@
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+<jsp:include page="navbar.jsp"></jsp:include>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <div class="row">
@@ -53,7 +60,7 @@
             <br>
             <label for="totalPrice">Total price: ${basket.totalPrice}</label>
             <br>
-            <a href="/order" type="button" class="btn"><i>Buy</i></a>
+            <a href="/order/${basket.totalPrice}" type="button" class="btn"><i>Buy</i></a>
         </div>
     </div>
 </div>

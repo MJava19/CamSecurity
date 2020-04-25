@@ -16,6 +16,13 @@
 <body>
 
 <div class="container">
+    <jsp:include page="navbar.jsp"></jsp:include>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <form:form method="POST" class="form-signin" modelAttribute="orderForm">
         <h2 class="form-heading">Your post</h2>
