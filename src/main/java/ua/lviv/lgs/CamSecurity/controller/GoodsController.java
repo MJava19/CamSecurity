@@ -68,6 +68,7 @@ public class GoodsController {
         Goods rezult = new Goods();
         rezult.setId(goodsDTO.getId());
         rezult.setCode(goodsDTO.getCode());
+        rezult.setManufacturer(goodsDTO.getManufacturer());
         rezult.setName(goodsDTO.getName());
         rezult.setPrice(goodsDTO.getPrice());
         rezult.setDescription(goodsDTO.getDescription());

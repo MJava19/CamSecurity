@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -7,10 +8,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Edit your profile</title>
-
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 </head>
 
 <body>
@@ -21,59 +26,78 @@
 <br>
 <br>
 <br>
+
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" enctype="multipart/form-data" class="form-signin" >
         <input type="hidden" value="${user.id}" class="form-control" id="id" name="id">
-        <h2 class="form-signin-heading">Edit your profile</h2>
+        <h2 class="form-signin-heading">Редагування профілю</h2>
+
+        <spring:bind path="id"  >
+            <div class="form-group hiden ${status.error ? 'has-error' : ''}">
+                <form:input type="number"  path="id" class="form-control"
+                            placeholder="id"></form:input>
+                <form:errors path="id"></form:errors>
+            </div>
+        </spring:bind>
+
+
+        <spring:bind path="username">
+            <div class="form-group hiden ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="username" class="form-control"
+                            placeholder="username"></form:input>
+                <form:errors path="username"></form:errors>
+            </div>
+        </spring:bind>
 
 
         <spring:bind path="firstName">
+            <h3><label>Введіть ваше ім'я:</label></h3>
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="firstName" class="form-control"
-                            placeholder="firstName"></form:input>
+                            placeholder="Ім'я"></form:input>
                 <form:errors path="firstName"></form:errors>
             </div>
         </spring:bind>
 
 
         <spring:bind path="lastName">
+            <h3><label>Введіть ваше прізвише:</label></h3>
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="lastName" class="form-control"
-                            placeholder="lastName"></form:input>
+                            placeholder="Прізвище"></form:input>
                 <form:errors path="lastName"></form:errors>
             </div>
         </spring:bind>
 
 
         <spring:bind path="email">
+            <h3><label>Введіть ваш Email:</label></h3>
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="email" path="email" class="form-control"
-                            placeholder="email"></form:input>
+                            placeholder="Email"></form:input>
                 <form:errors path="email"></form:errors>
             </div>
         </spring:bind>
 
 
         <spring:bind path="password">
+            <h3><label>Введіть пароль: </label></h3>
         <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+            <form:input type="password" path="password" class="form-control" placeholder="Пародь"></form:input>
             <form:errors path="password"></form:errors>
         </div>
         </spring:bind>
 
 
         <spring:bind path="avatar" >
+            <h3><label>Ваше фото:</label></h3>
                 <form:input  type="file"  path="avatar" class="form-control" placeholder="Avatar"></form:input>
         </spring:bind>
         <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Змінити</button>
     </form:form>
 
 </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

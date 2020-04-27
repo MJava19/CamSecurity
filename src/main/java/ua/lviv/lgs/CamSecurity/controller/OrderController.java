@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import ua.lviv.lgs.CamSecurity.servise.FinishOrderService;
 import ua.lviv.lgs.CamSecurity.servise.OrderService;
 import ua.lviv.lgs.CamSecurity.servise.ShoppingBasketServise;
 import ua.lviv.lgs.CamSecurity.servise.UserServise;
+import ua.lviv.lgs.CamSecurity.validator.OrderValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -26,18 +28,16 @@ public class OrderController {
     private final UserServise userServise;
     private final FinishOrderService finishOrderService;
     private final ShoppingBasketServise basketServise;
+    private final OrderValidator orderValidator;
 
     @GetMapping("/order")
-    public String getOrderPage(Model model, @RequestParam(required=false) Long totalGoods) {
-        if (totalGoods == null) {
-            return "redirect:/myBasket";
-        }
+    public String getOrderPage(Model model) {
         model.addAttribute("orderForm", new Order());
         return "buy";
     }
 
     @PostMapping("/order")
-    public String createOrder(HttpServletRequest request, @ModelAttribute("orderForm") Order order){
+    public String createOrder(HttpServletRequest request, @ModelAttribute("orderForm") Order order, BindingResult bindingResult){
         if (request.isUserInRole("ROLE_USER")) {
             Principal principal = request.getUserPrincipal();
             User user = userServise.findByUsername(principal.getName());
@@ -54,6 +54,10 @@ public class OrderController {
             order.setTotalGoods(totalGoods);
             order.setTotalPrice(totalPrise);
             order.setUserName(userName);
+            orderValidator.validate(order, bindingResult);
+            if (bindingResult.hasErrors()) {
+                return "buy";
+            }
 
             orderService.create(order);
         } else {
@@ -70,6 +74,10 @@ public class OrderController {
             order.setGoodsList(goodsList);
             order.setTotalGoods(totalGoods);
             order.setTotalPrice(totalPrise);
+            orderValidator.validate(order, bindingResult);
+            if (bindingResult.hasErrors()) {
+                return "buy";
+            }
 
             orderService.create(order);
         }

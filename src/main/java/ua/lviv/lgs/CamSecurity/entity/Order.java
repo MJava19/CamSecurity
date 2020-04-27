@@ -25,10 +25,10 @@ public class Order {
     @NotNull
     private Long id;
 
-    @NotNull
+
     private String userName;
 
-    @OneToMany
+    @ManyToMany
     @NotNull
     private List<Goods> goodsList;
 

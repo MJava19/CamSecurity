@@ -1,12 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="UTF-8" %>
-<jsp:include page="navbar.jsp"></jsp:include>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +22,7 @@
 <br>
 <br>
 <br>
-<h4> Goods with id ${id} was not found</h4>
+
+<h2>Your basket is empty</h2>
 </body>
 </html>

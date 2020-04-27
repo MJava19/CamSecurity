@@ -17,28 +17,20 @@ public class OrderValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Order order = (Order) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "goodsList", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "totalGoods", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fatherName", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "totalPrice", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneNumber", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "region", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fatherName", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "city", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Not empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneNumber", "Not empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "region", "Not empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "city", "Not empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberBranch", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberBranch", "Not_empty", "Це обов'язкове поле для заповнення!");
     }
 }

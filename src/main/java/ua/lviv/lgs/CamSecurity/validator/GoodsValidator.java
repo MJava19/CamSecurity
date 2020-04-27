@@ -17,12 +17,12 @@ public class GoodsValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Goods goods = (Goods) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "code", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "code", "Not empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "Not empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "Not empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "Not empty", "Це обов'язкове поле для заповнення!");
     }
 }

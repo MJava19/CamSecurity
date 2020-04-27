@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="b" %>
 
@@ -11,12 +11,9 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="${contextPath}/resources/css/style.css" rel="stylesheet"/>
 </head>
 <jsp:include page="navbar.jsp"></jsp:include>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 
@@ -24,22 +21,22 @@
     <div class="row">
         <div class="col-12">
             <br>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-hover table-primary">
+                <thead class="bg-primary">
                 <tr>
-                    <th scope="col">userName</th>
-                    <th scope="col">Goods</th>
-                    <th scope="col">totalGoods</th>
-                    <th scope="col">totalPrice</th>
-                    <th scope="col">firstName</th>
-                    <th scope="col">lastName</th>
-                    <th scope="col">fatherName</th>
-                    <th scope="col">email</th>
-                    <th scope="col">phoneNumber</th>
-                    <th scope="col">region</th>
-                    <th scope="col">city</th>
-                    <th scope="col">numberBranch</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Логін</th>
+                    <th scope="col">Товари</th>
+                    <th scope="col">Кількість товарів</th>
+                    <th scope="col">Загальна ціна</th>
+                    <th scope="col">Ім'я</th>
+                    <th scope="col">Прізвище</th>
+                    <th scope="col">По-Батькові</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Номер телефону</th>
+                    <th scope="col">Область</th>
+                    <th scope="col">Місто</th>
+                    <th scope="col">Номер відділення</th>
+                    <th scope="col">Виконано</th>
                 </tr>
                 </thead>
                 <tbody>

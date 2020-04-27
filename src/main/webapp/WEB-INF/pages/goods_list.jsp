@@ -1,7 +1,7 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="b" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <head>
     <meta charset="utf-8">
@@ -12,63 +12,59 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <jsp:include page="navbar.jsp"></jsp:include>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <a href="/goods/create" class="btn btn-primary"><i class="far fa-eye">Add goods</i></a>
-            <br>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">Code</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description
-                        <name></name>
-                    </th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Add to basket or Buy</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${goods}" var="goods">
-                    <tr>
-                        <c:set var = "goods_id" value = "${goods.id}"/>
-                        <th scope="row">${goods.code}</th>
-                        <td>${goods.name}</td>
-                        <td>${goods.description}</td>
-                        <td>${goods.price}</td>
-                        <td>
-                            <c:forEach items="${goods.image}" var="goods">
-                                <img width="150px" height="150px" src="data:image/png;base64,<c:out value='${goods.base64image}'/>"/>
-                            </c:forEach>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="/basket?id=${goods_id}" type="button"
-                                   class="btn btn-primary"><i>Add to basket</i></a>
+            <c:forEach items="${goods}" var="goods">
+                <c:set var = "goods_id" value = "${goods.id}"/>
+            <div class="cards bg">
+                <div class="row ">
+                    <div class="col-md-7 px-3">
+                        <div class="card-block px-6">
+                            <h4 class="card-title">${goods.name}</h4>
+                            <p class="card-text"><h5>${goods.description}</h5></p>
+                            <br>
+                            <h4 class="card-title">Виробник товару: ${goods.manufacturer}</h4>
+                            <br>
+                            <h4 class="card-title">Код товару: ${goods.code}</h4>
+                            <a href="/basket?id=${goods_id}" class="mt-auto btn btn-primary"><h4>Додати в кошик</h4></a>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <a href="/goods/one?id=${goods_id}" class="mt-auto btn btn-danger"><h4>Редагувати</h4></a>
+                            <a href="/goods/delete?id=${goods_id}" class="mt-auto btn btn-danger"><h4>Видалити</h4></a>
+                            </sec:authorize>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+
+                        <div id="God" class="carousel slide" data-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <c:forEach items="${goods.image}"  begin="0" end="0" var="goods_s">
+                                    <img class="d-block" width="300px" height="300px" src="data:image/png;base64,<c:out value='${goods_s.base64image}'/>" alt="">
+                                    </c:forEach>
+                                </div>
+                                <c:forEach items="${goods.image}" begin="1" var="goods">
+                                <div class="carousel-item">
+                                        <img class="d-block" width="300px" height="300px" src="data:image/png;base64,<c:out value='${goods.base64image}'/>" alt="">
+                                </div>
+                                </c:forEach>
+                                <a class="carousel-control-prev" href="#God" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#God" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                        </td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="/goods/one?id=${goods_id}" type="button"
-                                   class="btn btn-primary"><i>edit</i></a>
-                                <a href="/goods/delete?id=${goods_id}" type="button" class="btn btn-danger"><i>delete</i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </c:forEach>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>

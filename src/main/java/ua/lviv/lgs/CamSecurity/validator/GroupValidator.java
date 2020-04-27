@@ -17,9 +17,9 @@ public class GroupValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Groups groups = (Groups) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", "Not empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"description", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"description", "Not empty", "Це обов'язкове поле для заповнення!");
     }
 }
 

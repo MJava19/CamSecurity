@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +20,45 @@
    <h2> <a class="nav-link mr-auto" href="/goods">
        CamSecurity
     </a></h2>
-    <%--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">--%>
-        <%--<span class="navbar-toggler-icon"></span>--%>
-    <%--</button>--%>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-               <h3> <a class="nav-link"  font-size="1rem" href="/goods">Goods</a></h3>
+               <h3> <a class="nav-link"  font-size="1rem" href="/goods">Товари</a></h3>
             </li>
             <li class="nav-item">
-                <h3><a class="nav-link" href="/groups">Groups</a></h3>
+                <h3><a class="nav-link" href="/groups">Категорії</a></h3>
             </li>
+<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
             <li class="nav-item">
-                <h3><a class="nav-link" href="/">Cabinet</a></h3>
+                <h3><a class="nav-link" href="/">Особистий кабінет</a></h3>
             </li>
+</sec:authorize>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+            <li class="nav-item">
+                <div class="btn-group">
+                <button type="button" class="btn btn-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <h4>Інструменти Адміна</h4>
+                </button>
+                <div class="dropdown-menu">
+                    <h4><a class="dropdown-item" href="/goods/create">Додати товар</a></h4>
+                    <h4><a class="dropdown-item" href="/groups/create">Додати групу</a></h4>
+                    <h4><a class="dropdown-item" href="/order/finish">Виконані замовлення</a></h4>
+                    <div class="dropdown-divider"></div>
+                    <h4><a class="dropdown-item" href="/admin/orders">Нові замовлення</a></h4>
+                </div>
+                </div>
+            </li>
+</sec:authorize>
+
             <form class="form-inline my-2 my-lg-0">
-                <h3><a class="nav-link nav-item marg" href="/myBasket">Basket</a></h3>
-                <button class="btn btn-outline-success marg" href="/login" ><h4>Login</h4></button>
-                <button class="btn btn-outline-danger " href="/logout" ><h4>Logout</h4></button>
+                <h3><a class="nav-link nav-item marg" href="/myBasket">Кошик</a></h3>
+<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+                <a class="btn btn-outline-danger"  href="/logout"><h4>Вийти</h4></a>
+</sec:authorize>
+                <sec:authorize access="!isAuthenticated()">
+                 <a class="btn btn-outline-success marg" href="/login"><h4>Ввійти</h4></a>
+                </sec:authorize>
+
             </form>
         </ul>
     </div>

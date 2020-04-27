@@ -21,12 +21,18 @@ public class Groups {
     @NotNull
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     private List<Goods> goods;
 
     @NotNull
     private String description;
 
     private Integer totalGoods;
+
+    @Lob
+    private byte[] avatar;
+
+    @Column(length = 100000)
+    private String base64;
 
 }

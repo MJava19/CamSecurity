@@ -24,6 +24,9 @@ public class Goods {
     private Integer code;
 
     @NotNull
+    private String manufacturer;
+
+    @NotNull
     private String name;
 
     @NotNull

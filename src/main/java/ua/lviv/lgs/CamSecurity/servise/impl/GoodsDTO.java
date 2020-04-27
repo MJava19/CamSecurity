@@ -22,6 +22,8 @@ public class GoodsDTO {
 
     private String name;
 
+    private String manufacturer;
+
     private String description;
 
     private Long price;

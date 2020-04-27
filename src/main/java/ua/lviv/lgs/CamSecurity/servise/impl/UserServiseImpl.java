@@ -8,6 +8,8 @@ import ua.lviv.lgs.CamSecurity.exeption.NotFoundExeption;
 import ua.lviv.lgs.CamSecurity.repository.UserRepository;
 import ua.lviv.lgs.CamSecurity.servise.UserServise;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiseImpl implements UserServise {
@@ -24,5 +26,9 @@ public class UserServiseImpl implements UserServise {
     @Override
     public User findByUsername(String name) {
         return userRepository.findByUsername(name).orElseThrow(() -> new NotFoundExeption("User with name: " + name + " was not found"));
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

@@ -1,5 +1,4 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="b" %>
 
@@ -12,12 +11,9 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="${contextPath}/resources/css/style.css" rel="stylesheet"/>
 </head>
 <jsp:include page="navbar.jsp"></jsp:include>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 
@@ -26,13 +22,13 @@
         <div class="col-12"><br>
             <h1>Basket</h1>
             <br>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-striped table-primary">
+                <thead class="bg-primary">
                 <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Зображення</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Ціна</th>
+                    <th scope="col">Видалити товар з кошика</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,15 +36,35 @@
                     <tr>
                         <c:set var = "goods_id" value = "${goods.id}"/>
                         <td>
-                            <c:forEach items="${goods.image}" var="goods_image">
-                                <img width="150px" height="150px" src="data:image/png;base64,<c:out value='${goods_image.base64image}'/>"/>
-                            </c:forEach>
+                                <div id="God" class="carousel slide mv" data-ride="carousel">
+
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <c:forEach items="${goods.image}"  begin="0" end="0" var="goods_s">
+                                                <img class="d-block" width="250px" height="250px" src="data:image/png;base64,<c:out value='${goods_s.base64image}'/>" alt="">
+                                            </c:forEach>
+                                        </div>
+                                        <c:forEach items="${goods.image}" begin="1" var="goods_s">
+                                            <div class="carousel-item">
+                                                <img class="d-block" width="250px" height="250px" src="data:image/png;base64,<c:out value='${goods_s.base64image}'/>" alt="">
+                                            </div>
+                                        </c:forEach>
+                                        <a class="carousel-control-prev" href="#God" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#God" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
                         </td>
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="/myBasket/delete?id=${goods_id}" type="button" class="btn"><i>delete</i></a>
+                             <a href="/myBasket/delete?id=${goods_id}" type="button" class="btn btn-danger"><h4>Видалити</h4></a>
                             </div>
                         </td>
                     </tr>
@@ -56,11 +72,11 @@
                 </tbody>
             </table>
 
-            <label for="totalGoods">Total goods in basket: ${basket.totalGoods}</label>
+            <h4><label>Кількість товарів в кошику: ${basket.totalGoods}</label></h4>
             <br>
-            <label for="totalPrice">Total price: ${basket.totalPrice}</label>
+            <h4><label>Загальна ціна: ${basket.totalPrice}</label></h4>
             <br>
-            <a href="/order/${basket.totalPrice}" type="button" class="btn"><i>Buy</i></a>
+            <a href="/order" type="button" class="btn btn-primary"><h3>Оформити доставку</h3></a>
         </div>
     </div>
 </div>

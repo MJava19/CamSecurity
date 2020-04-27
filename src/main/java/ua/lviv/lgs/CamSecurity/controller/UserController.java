@@ -2,7 +2,6 @@ package ua.lviv.lgs.CamSecurity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,7 +71,6 @@ public class UserController {
         return rezult;
     }
 
-
     @GetMapping("/registration")
     public String registrationPage(Model model) {
         model.addAttribute("userForm", new UserDTO());
@@ -93,7 +91,6 @@ public class UserController {
         User user = mapToEntity(userDTO);
         User userForId = userServise.findByUsername(request.getUserPrincipal().getName());
         user.setId(userForId.getId());
-        user.setUsername(userForId.getUsername());
         user.setShoppingBasket(userForId.getShoppingBasket());
         user.getRoles().add(roleRepository.findByName("ROLE_USER"));
         userValidator.validate(user, bindingResult);
@@ -103,4 +100,11 @@ public class UserController {
         userServise.save(user);
         return "redirect:/";
     }
+
+//    @Secured({"ROLE_ADMIN"})
+//    @GetMapping("/admin/allUsers")
+//    public String getAllUsers(Model model) {
+//        model.addAttribute("users", userServise.)
+//    }
+//
 }

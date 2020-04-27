@@ -11,8 +11,12 @@ import ua.lviv.lgs.CamSecurity.entity.Groups;
 import ua.lviv.lgs.CamSecurity.exeption.NotFoundExeption;
 import ua.lviv.lgs.CamSecurity.servise.GoodsServise;
 import ua.lviv.lgs.CamSecurity.servise.GroupService;
+import ua.lviv.lgs.CamSecurity.servise.impl.GroupDTO;
 import ua.lviv.lgs.CamSecurity.validator.GroupValidator;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +54,8 @@ public class GroupController {
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createGroup(@ModelAttribute Groups group, BindingResult bindingResult){
+    public String createGroup(@ModelAttribute GroupDTO groupDTO, BindingResult bindingResult){
+        Groups group = mapToEntity(groupDTO);
         groupValidator.validate(group, bindingResult);
         if (bindingResult.hasErrors()) {
             return "group";
@@ -59,15 +64,44 @@ public class GroupController {
         return "redirect:/groups";
     }
 
+    public Groups mapToEntity(GroupDTO groupDTO) {
+        Groups result = new Groups();
+
+        result.setId(groupDTO.getId());
+        result.setName(groupDTO.getName());
+        result.setDescription(groupDTO.getDescription());
+        result.setGoods(groupDTO.getGoods());
+        result.setTotalGoods(groupDTO.getTotalGoods());
+        try {
+        result.setBase64(Base64.getEncoder().encodeToString(groupDTO.getAvatar().getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            result.setAvatar(groupDTO.getAvatar().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    List<Goods> listGoods = new ArrayList<>();
     @Secured("ROLE_ADMIN")
     @PostMapping("/update")
-    public String updateGroup(@ModelAttribute Groups group, BindingResult bindingResult) {
-        if (group.getId() != null) {
+    public String updateGroup(@ModelAttribute GroupDTO groupDTO, BindingResult bindingResult) {
+        if (groupDTO.getId() != null) {
+            listGoods.addAll(groupService.findById(groupDTO.getId()).orElseThrow(() -> new NotFoundExeption("Group with id was not found")).getGoods());
+            Groups group = mapToEntity(groupDTO);
             groupValidator.validate(group, bindingResult);
             if (bindingResult.hasErrors()) {
                 return "group";
             }
-            groupService.update(group);}
+            groupService.update(group);
+
+            for (int i = 0; i < listGoods.size(); i++) {
+               groupService.addGoodsToGroup(listGoods.get(i).getId(), group.getId());
+            }
+        }
         return "redirect:/groups";
     }
 
@@ -126,8 +160,10 @@ public class GroupController {
     @GetMapping("/one")
     public String getOne(@RequestParam Long id, Model model) {
         Optional<Groups> groupsOptional = groupService.findById(id);
+        List<Goods> listGoods = groupService.findById(id).get().getGoods();
         if (groupsOptional.isPresent()) {
             model.addAttribute("group", groupsOptional.get());
+            model.addAttribute("listGoods", listGoods);
             return "group-update";
         }
         return "group-not-found";

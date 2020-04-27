@@ -75,18 +75,27 @@ public class BasketController {
             String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
             if (basketServise.findBySessionId(sessionId) != null) {
                 ShoppingBasket shoppingBasket = basketServise.findBySessionId(sessionId);
+                if (shoppingBasket.getTotalGoods() == null || shoppingBasket.getTotalGoods() == 0) {
+                    return "empty-basket";
+                }
                 model.addAttribute("basket", shoppingBasket);
             } else {
                 ShoppingBasket shoppingBasket = new ShoppingBasket();
                 basketServise.create(shoppingBasket);
                 shoppingBasket.setSessionId(sessionId);
                 basketServise.create(shoppingBasket);
+                if (shoppingBasket.getTotalGoods() == null || shoppingBasket.getTotalGoods() == 0) {
+                    return "empty-basket";
+                }
                 model.addAttribute("basket", shoppingBasket);
             }
         } else {
             Principal principal = request.getUserPrincipal();
             User user = userServise.findByUsername(principal.getName());
             ShoppingBasket shoppingBasket = user.getShoppingBasket();
+            if (shoppingBasket.getTotalGoods() == null || shoppingBasket.getTotalGoods() == 0) {
+                return "empty-basket";
+            }
             model.addAttribute("basket", shoppingBasket);
         }
         return "basket";

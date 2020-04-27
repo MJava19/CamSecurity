@@ -18,7 +18,8 @@ public class WelcomeController {
     @Secured("ROLE_USER")
     @GetMapping
     public  String home(HttpServletRequest request, Model model) {
-        model.addAttribute("message", userServise.findByUsername(request.getUserPrincipal().getName()));
+        User user = userServise.findByUsername(request.getUserPrincipal().getName());
+        model.addAttribute("user", user);
         return "home";
     }
 }

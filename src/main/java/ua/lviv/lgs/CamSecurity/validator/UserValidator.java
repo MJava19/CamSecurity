@@ -17,13 +17,13 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Not_empty", "Це обов'язкове поле для заповнення!");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Not_empty", "Це обов'язкове поле для заповнення!");
         if (user.getPassword().length() < 8) {
-            errors.rejectValue("password", "Size.userForm.password");
+            errors.rejectValue("password", "Size.userForm.password", "Мінімальна довжина пароля 8 символів");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Not_empty", "Це обов'язкове поле для заповнення!");
     }
 }
