@@ -85,21 +85,23 @@ public class GroupController {
         return result;
     }
 
-    List<Goods> listGoods = new ArrayList<>();
+
     @Secured("ROLE_ADMIN")
     @PostMapping("/update")
     public String updateGroup(@ModelAttribute GroupDTO groupDTO, BindingResult bindingResult) {
         if (groupDTO.getId() != null) {
-            listGoods.addAll(groupService.findById(groupDTO.getId()).orElseThrow(() -> new NotFoundExeption("Group with id was not found")).getGoods());
             Groups group = mapToEntity(groupDTO);
             groupValidator.validate(group, bindingResult);
             if (bindingResult.hasErrors()) {
                 return "group";
             }
             groupService.update(group);
-
-            for (int i = 0; i < listGoods.size(); i++) {
-               groupService.addGoodsToGroup(listGoods.get(i).getId(), group.getId());
+            List<Goods> result = goodsServise.findAll();
+            for (long i = 0; i < result.size(); i++) {
+                Goods goods = result.get((int) i);
+                if (goods.getGroup().getId() == group.getId()) {
+                    groupService.addGoodsToGroup(goods.getId(), group.getId());
+                }
             }
         }
         return "redirect:/groups";

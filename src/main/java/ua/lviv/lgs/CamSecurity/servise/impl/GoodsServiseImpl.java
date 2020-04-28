@@ -42,8 +42,8 @@ public class GoodsServiseImpl implements GoodsServise {
 
 
     @Override
-    public Set<Goods> findByName(String name) {
+    public List<Goods> findByNameOrCodeOrManufacturer(String name) {
 
-        return goodsRepository.findByName(name);
+        return goodsRepository.findByNameOrCodeOrManufacturer(name);
     }
 }

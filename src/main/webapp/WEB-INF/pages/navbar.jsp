@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" border-radius="0px">
@@ -50,6 +50,12 @@
             </li>
 </sec:authorize>
 
+    <div class="fg form-inline my-2">
+        <form action="/goods/search/${qwery}">
+        <input class="form-control mr-sm-2 form-control-lg" name="qwery" type="search" placeholder="Знайти товар" aria-label="Search">
+         <button class="btn btn-outline-success marg" type="submit"><h4>Пошук</h4></button>
+        </form>
+    </div>
             <form class="form-inline my-2 my-lg-0">
                 <h3><a class="nav-link nav-item marg" href="/myBasket">Кошик</a></h3>
 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">

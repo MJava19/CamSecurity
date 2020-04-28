@@ -3,7 +3,9 @@
 }
 
 .my-lg-0 {
-    margin-left: 65rem!important;
+    position: absolute;
+    right: 10px;
+
 }
 
 .marg {
@@ -177,4 +179,9 @@ th {
     display: inline-block;
 }
 
+.fg {
+    position: absolute;
+    right: 40%;
+    top: 2px;
 
+}

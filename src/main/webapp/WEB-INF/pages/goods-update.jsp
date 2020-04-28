@@ -26,7 +26,7 @@
                 <input type="hidden" value="${goods.id}" class="form-control" id="id" name="id">
                 <spring:bind path="name" >
                     <h3><label>Код товару:</label></h3>
-                    <form:input  type="number"  path="code" class="form-control form-control-lg"  id="code" name="code"></form:input>
+                    <form:input  type="text"  path="code" class="form-control form-control-lg"  id="code" name="code"></form:input>
                 </spring:bind>
 
                 <spring:bind path="name" >

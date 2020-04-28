@@ -18,5 +18,6 @@ public interface GoodsServise {
 
     void deleteById(Long id);
 
-    Set<Goods> findByName(String name);
+    List<Goods> findByNameOrCodeOrManufacturer(String name);
+
 }

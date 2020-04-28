@@ -21,7 +21,7 @@ public class Goods {
 
     @NotNull
     @Column(unique = true)
-    private Integer code;
+    private String code;
 
     @NotNull
     private String manufacturer;

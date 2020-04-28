@@ -9,6 +9,7 @@ import ua.lviv.lgs.CamSecurity.repository.GoodsRepository;
 import ua.lviv.lgs.CamSecurity.repository.GroupsRepository;
 import ua.lviv.lgs.CamSecurity.servise.GroupService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -50,7 +51,9 @@ public class GroupServiseImpl implements GroupService {
         Groups groups = groupsRepository.findById(groupId).orElseThrow(() -> new NotFoundExeption("group was not found with this id: " + groupId));
         Goods goods = goodsRepository.findById(goodsId).orElseThrow(() -> new NotFoundExeption("goods was not found with this id: " + groupId));
 
-        groups.getGoods().add(goods);
+        List<Goods> result = new ArrayList<>();
+        result.add(goods);
+        groups.setGoods(result);
         groupsRepository.save(groups);
     }
 

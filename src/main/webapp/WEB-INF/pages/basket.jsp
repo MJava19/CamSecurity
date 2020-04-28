@@ -36,7 +36,7 @@
                     <tr>
                         <c:set var = "goods_id" value = "${goods.id}"/>
                         <td>
-                                <div id="God" class="carousel slide mv" data-ride="carousel">
+                                <div id="God${goods_id}" class="carousel slide mv" data-ride="carousel">
 
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -49,11 +49,11 @@
                                                 <img class="d-block" width="250px" height="250px" src="data:image/png;base64,<c:out value='${goods_s.base64image}'/>" alt="">
                                             </div>
                                         </c:forEach>
-                                        <a class="carousel-control-prev" href="#God" role="button" data-slide="prev">
+                                        <a class="carousel-control-prev" href="#God${goods_id}" role="button" data-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
-                                        <a class="carousel-control-next" href="#God" role="button" data-slide="next">
+                                        <a class="carousel-control-next" href="#God${goods_id}" role="button" data-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
                                         </a>

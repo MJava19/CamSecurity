@@ -45,8 +45,8 @@ public class GoodsController {
         if (bindingResult.hasErrors()) {
             return "goods";
         }
-        goodsServise.create(goods);
-        groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
+        goodsServise.update(goods);
+//        groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
         return "redirect:/goods";
     }
 
@@ -137,5 +137,14 @@ public class GoodsController {
         return "goods-not-found";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam(required=false) String qwery, Model model) {
+        List<Goods> result = goodsServise.findByNameOrCodeOrManufacturer(qwery);
+        if (result.size() == 0 || qwery == "") {
+            return "redirect:/goods";
+        }
+        model.addAttribute("goods", result );
+        return "goods_list";
+    }
 
 }

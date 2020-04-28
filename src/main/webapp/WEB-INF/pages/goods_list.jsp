@@ -12,7 +12,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 </head>
 <jsp:include page="navbar.jsp"></jsp:include>
 <br>
@@ -27,7 +27,6 @@
                             <p class="card-text"><h5>${goods.description}</h5></p>
                             <br>
                             <h4 class="card-title">Виробник товару: ${goods.manufacturer}</h4>
-                            <br>
                             <h4 class="card-title">Код товару: ${goods.code}</h4>
                             <a href="/basket?id=${goods_id}" class="mt-auto btn btn-primary"><h4>Додати в кошик</h4></a>
                             <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -38,7 +37,7 @@
                     </div>
                     <div class="col-md-5">
 
-                        <div id="God" class="carousel slide" data-ride="carousel">
+                        <div id="God${goods_id}" class="carousel slide" data-ride="carousel">
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -51,11 +50,11 @@
                                         <img class="d-block" width="300px" height="300px" src="data:image/png;base64,<c:out value='${goods.base64image}'/>" alt="">
                                 </div>
                                 </c:forEach>
-                                <a class="carousel-control-prev" href="#God" role="button" data-slide="prev">
+                                <a class="carousel-control-prev" href="#God${goods_id}" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#God" role="button" data-slide="next">
+                                <a class="carousel-control-next" href="#God${goods_id}" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>

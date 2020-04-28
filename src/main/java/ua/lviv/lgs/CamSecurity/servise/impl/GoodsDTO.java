@@ -18,7 +18,7 @@ public class GoodsDTO {
 
     private Long id;
 
-    private Integer code;
+    private String code;
 
     private String name;
 
