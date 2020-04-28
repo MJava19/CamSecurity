@@ -45,8 +45,8 @@ public class GoodsController {
         if (bindingResult.hasErrors()) {
             return "goods";
         }
-        goodsServise.create(goods);
-        groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
+        goodsServise.update(goods);
+//        groupService.addGoodsToGroup(goods.getId(), goods.getGroup().getId());
         return "redirect:/goods";
     }
 
