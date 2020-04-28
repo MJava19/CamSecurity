@@ -24,5 +24,12 @@ public class GoodsValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "Not empty", "Це обов'язкове поле для заповнення!");
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "Not empty", "Це обов'язкове поле для заповнення!");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "manufacturer", "Not empty", "Це обов'язкове поле для заповнення!");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "image", "Not empty", "Це обов'язкове поле для заповнення!");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "group", "Not empty", "Це обов'язкове поле для заповнення!");
+
     }
 }

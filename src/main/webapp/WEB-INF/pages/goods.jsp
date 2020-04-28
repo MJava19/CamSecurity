@@ -26,42 +26,63 @@
 <div class="form-group">
     <spring:bind path="name" >
         <h3><label>Код товару:</label></h3>
+        <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:input  type="text"  path="code" class="form-control form-control-lg"  id="code" name="code"></form:input>
+        <form:errors path="code"></form:errors>
+        </div>
     </spring:bind>
 
     <spring:bind path="name" >
         <h3><label>Назва товару:</label></h3>
+        <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:input  type="text"  path="name" class="form-control form-control-lg"  id="name" name="name"></form:input>
+        <form:errors path="name"></form:errors>
+        </div>
     </spring:bind>
 
     <spring:bind path="description" >
         <h3><label>Опис товару:</label></h3>
+        <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:textarea  type="text"  path="description" class="form-control form-control-lg"  id="description" name="description"></form:textarea>
+            <form:errors path="description"></form:errors>
+        </div>
     </spring:bind>
 
     <spring:bind path="manufacturer" >
         <h3><label>Виробник товару:</label></h3>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:input  type="text"  path="manufacturer" class="form-control form-control-lg"  id="manufacturer" name="manufacturer"></form:input>
+                <form:errors path="manufacturer"></form:errors>
+            </div>
     </spring:bind>
 
     <spring:bind path="price" >
         <h3><label>Ціна товару:</label></h3>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:input  type="number"  path="price" class="form-control form-control-lg"  id="price" name="price"></form:input>
+                <form:errors path="price"></form:errors>
+            </div>
     </spring:bind>
 
     <spring:bind path="group" >
-        <h3><label>Опис групи:</label></h3>
-        <select  name="group"  class="form-control form-control-lg">
+        <h3><label>Оберіть групу товару:</label></h3>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+            <select  name="group"  class="form-control form-control-lg">
             <option value="" disabled selected><h3>Оберіть групу для товару</h3></option>
             <c:forEach items="${groups}" var="group">
                 <option  value="${group.id}"><h4>${group.name}</h4></option>
             </c:forEach>
         </select>
+                <form:errors path="group"></form:errors>
+            </div>
     </spring:bind>
 
     <spring:bind path="image" >
         <h3><label>Фото товару:</label></h3>
+        <div class="form-group ${status.error ? 'has-error' : ''}">
         <form:input  type="file" multiple = "multiple" path="image" class="form-control form-control-lg" placeholder="Image" ></form:input>
+            <form:errors path="image"></form:errors>
+        </div>
     </spring:bind>
 </div>
     <br>

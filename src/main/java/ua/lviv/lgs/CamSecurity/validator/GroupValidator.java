@@ -20,6 +20,8 @@ public class GroupValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", "Not empty", "Це обов'язкове поле для заповнення!");
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"description", "Not empty", "Це обов'язкове поле для заповнення!");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"avatar", "Not empty", "Це обов'язкове поле для заповнення!");
     }
 }
 

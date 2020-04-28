@@ -183,5 +183,17 @@ th {
     position: absolute;
     right: 40%;
     top: 2px;
+}
 
+.jds {
+    display: inline-block;
+    position: absolute;
+    right: 40%;
+    top: 75px;
+}
+
+.vls {
+    position: absolute;
+    right: 35%;
+    top: 55px;
 }

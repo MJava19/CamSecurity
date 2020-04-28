@@ -17,10 +17,9 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<h1>Your order send to server) Wait on your package!</h1>
+<div class="jds">
+    <h2>Ваше замовлення прийнято! Скоро з Вами зв'яжеться менеджер)</h2>
+    <a class="btn btn-outline-primary  vls" href="/goods"><h4>Продовжити покупки</h4></a>
+</div>
 </body>
 </html>

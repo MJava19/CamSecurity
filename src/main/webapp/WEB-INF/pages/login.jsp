@@ -23,10 +23,6 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 <div class="container">
     <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Ввійти</h2>
@@ -35,8 +31,6 @@
             <span>${message}</span>
             <input name="username" type="text" class="form-control" placeholder="Логін"
                    autofocus="true"/>
-
-
             <input name="password" type="password" class="form-control" placeholder="Пароль"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -46,8 +40,5 @@
         </div>
     </form>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

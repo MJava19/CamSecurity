@@ -25,23 +25,32 @@
 
 
                     <spring:bind path="name">
-                    <form:input type="text" class="form-control form-control-lg" id="name" name="name"
-                                value="${group.name}" path="name"></form:input>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <form:input type="text" class="form-control form-control-lg" id="name" name="name"
+                                        value="${group.name}" path="name"></form:input>
+                            <form:errors path="name"></form:errors>
+                        </div>
                     </spring:bind>
 
 
                     <br>
                     <h3><label>Опис групи:</label></h3>
                     <spring:bind path="description">
-                    <form:textarea type="text" class="form-control form-control-lg" id="description" path="description" name="description"
-                                value="${group.description}"></form:textarea>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <form:textarea type="text" class="form-control form-control-lg" id="description" path="description" name="description"
+                                           value="${group.description}"></form:textarea>
+                            <form:errors path="description"></form:errors>
+                        </div>
                     </spring:bind>
 
 
                     <br>
-                     <h3><label>Картинка крупи:</label></h3>
+                    <h3><label>Картинка крупи:</label></h3>
                     <spring:bind path="avatar">
-                    <form:input type="file"  path="avatar" class="form-control form-control-lg" placeholder="Avatar"></form:input>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <form:input type="file"  path="avatar" class="form-control form-control-lg" placeholder="Avatar"></form:input>
+                            <form:errors path="avatar"></form:errors>
+                        </div>
                     </spring:bind>
                 </div>
                     <button type="submit" class="btn  btn-danger "><h4>Оновити</h4></button>

@@ -18,11 +18,9 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-
-<h2>Your basket is empty</h2>
+<div class="jds">
+    <h2>Ваш кошик пустий! Додайте до нього товари)</h2>
+    <a class="btn btn-outline-primary  vls" href="/goods"><h4>Перейти до товарів</h4></a>
+</div>
 </body>
 </html>
