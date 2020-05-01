@@ -9,6 +9,7 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Getter
@@ -24,7 +25,6 @@ public class Order {
     @GeneratedValue
     @NotNull
     private Long id;
-
 
     private String userName;
 
@@ -48,9 +48,11 @@ public class Order {
     private String fatherName;
 
     @NotNull
+    @Pattern(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/", message = "Не справжній email!")
     private String email;
 
     @NotNull
+    @Pattern(regexp = "^[0-9]{1,10}$", message = "Введіть номер починаючи з 0XXX...")
     private Integer phoneNumber;
 
     @NotNull

@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.*;
 
 @Getter
@@ -24,6 +25,7 @@ public class User implements UserDetails {
 
     @NotNull
     @Column(unique = true, nullable = false)
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "Введіть у форматі малих латинських літер, цифр та спец. символів '-, _'. Мінімум 3 символи!")
     private String username;
 
     @NotNull
@@ -34,6 +36,7 @@ public class User implements UserDetails {
 
     @NotNull
     @Column(unique = true, nullable = false)
+    @Pattern(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/", message = "Не справжній email!")
     private String email;
 
     @NotNull

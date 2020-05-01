@@ -13,6 +13,7 @@ public interface UserServise {
 
     User findByUsername(String name);
 
+    User findByEmail(String email);
 
 
 }

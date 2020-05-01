@@ -6,6 +6,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import ua.lviv.lgs.CamSecurity.entity.Order;
 
+import javax.validation.constraints.Pattern;
+
 @Component
 public class OrderValidator implements Validator {
     @Override
