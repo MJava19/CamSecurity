@@ -30,6 +30,7 @@ public class Goods {
     private String name;
 
     @NotNull
+    @Column(length = 1000000)
     private String description;
 
     @NotNull

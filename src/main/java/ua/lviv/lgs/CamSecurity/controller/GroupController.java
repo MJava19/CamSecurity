@@ -48,13 +48,14 @@ public class GroupController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/create")
-    public String getGroupPage() {
+    public String getGroupPage(Model model) {
+        model.addAttribute("group", new GroupDTO());
         return "group";
     }
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public String createGroup(@ModelAttribute GroupDTO groupDTO, BindingResult bindingResult){
+    public String createGroup(@ModelAttribute("group") GroupDTO groupDTO, BindingResult bindingResult){
         Groups group = mapToEntity(groupDTO);
         groupValidator.validate(group, bindingResult);
         if (bindingResult.hasErrors()) {

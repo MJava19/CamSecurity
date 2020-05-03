@@ -9,8 +9,6 @@ public interface UserServise {
 
     User save(User user);
 
-    List<User> findAll = new ArrayList<>();
-
     User findByUsername(String name);
 
     User findByEmail(String email);

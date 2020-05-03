@@ -81,19 +81,19 @@
         </spring:bind>
 
 
-        <spring:bind path="password">
-            <h3><label>Введіть пароль: </label></h3>
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <form:input type="password" path="password" class="form-control" placeholder="Пародь"></form:input>
-            <form:errors path="password"></form:errors>
-        </div>
-        </spring:bind>
-
-
         <spring:bind path="avatar" >
             <h3><label>Ваше фото:</label></h3>
                 <form:input  type="file"  path="avatar" class="form-control" placeholder="Avatar"></form:input>
         </spring:bind>
+
+        <spring:bind path="password">
+            <h3><label>Введіть пароль для підтверджкення:</label></h3>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="password" path="password" value=" " class="form-control" placeholder="Пароль"></form:input>
+                <form:errors path="password"></form:errors>
+            </div>
+        </spring:bind>
+
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Змінити</button>
     </form:form>
