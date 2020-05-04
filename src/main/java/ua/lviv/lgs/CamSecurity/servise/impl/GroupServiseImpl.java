@@ -52,6 +52,7 @@ public class GroupServiseImpl implements GroupService {
         Goods goods = goodsRepository.findById(goodsId).orElseThrow(() -> new NotFoundExeption("goods was not found with this id: " + groupId));
 
         List<Goods> result = new ArrayList<>();
+        result.addAll(groups.getGoods());
         result.add(goods);
         groups.setGoods(result);
         groupsRepository.save(groups);

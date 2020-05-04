@@ -28,6 +28,7 @@
                     <br>
                     <h4 class="card-title">Виробник товару: ${goods.manufacturer}</h4>
                     <h4 class="card-title">Код товару: ${goods.code}</h4>
+                    <h3 class="card-title">Ціна: ${goods.price} грн.</h3>
                     <a href="/basket?id=${goods_id}" class="mt-auto btn btn-primary"><h4>Додати в кошик</h4></a>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <a href="/goods/one?id=${goods_id}" class="mt-auto btn btn-danger"><h4>Редагувати</h4></a>
