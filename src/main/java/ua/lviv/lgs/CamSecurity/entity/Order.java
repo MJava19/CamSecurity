@@ -48,11 +48,9 @@ public class Order {
     private String fatherName;
 
     @NotNull
-    @Pattern(regexp = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/", message = "Не справжній email!")
     private String email;
 
     @NotNull
-    @Pattern(regexp = "^[0-9]{1,10}$", message = "Введіть номер починаючи з 0XXX...")
     private Integer phoneNumber;
 
     @NotNull

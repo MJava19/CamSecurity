@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12"><br>
-            <h1>Basket</h1>
+            <h1>Кошик</h1>
             <br>
             <table class="table table-striped table-primary">
                 <thead class="bg-primary">
