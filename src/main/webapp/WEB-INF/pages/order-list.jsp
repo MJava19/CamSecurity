@@ -47,7 +47,6 @@
                         <td>
                             <c:forEach items="${order.goodsList}" var="goods">
                                 <label>Code: ${goods.code}</label>
-                                <label>Name: ${goods.name}</label>
                             </c:forEach>
                         </td>
                         <td>${order.totalGoods}</td>

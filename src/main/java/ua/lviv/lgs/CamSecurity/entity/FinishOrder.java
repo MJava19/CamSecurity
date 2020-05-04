@@ -36,7 +36,7 @@ public class FinishOrder {
 
     private String email;
 
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     private String region;
 

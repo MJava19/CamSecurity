@@ -51,7 +51,7 @@ public class Order {
     private String email;
 
     @NotNull
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     @NotNull
     private String region;
